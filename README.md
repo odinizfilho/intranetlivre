@@ -19,7 +19,7 @@ Bem-vindo ao Intralivre, um projeto de intranet de código aberto desenvolvido e
 Tecnologias utilizadas no projeto:
 
 - PHP 8.2
-- Laravel 10
+- Laravel 10.22
 
 ## 🛡️ Licença
 
