@@ -26,3 +26,12 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
+ // Rotas Livres
+ Route::get('/i', function () {
+    return view('intralivre.home');
+});
+
+Route::fallback(function () {
+    return view('errors.404');
+   });
