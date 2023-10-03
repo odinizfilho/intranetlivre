@@ -8,10 +8,10 @@ class Cargo extends Model
 {
     protected $table = 'd_cargos';
 
-    protected $primaryKey = 'cod_cargo';
+    
 
     protected $fillable = [
-        'nome',
+        'nome', 'cod_cargo'
         // Outros campos do modelo
     ];
 

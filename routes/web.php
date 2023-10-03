@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ColaboradorController;
 use App\Http\Controllers\UnidadeController;
+use App\Http\Controllers\CargoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +30,27 @@ Route::middleware([
     })->name('dashboard');
 
 
+
+    // Rota para exibir a lista de cargos
+    Route::get('/cargos', [CargoController::class, 'index'])->name('cargos.index');
+
+    // Rota para exibir o formulário de criação de um novo cargo
+    Route::get('/cargos/create', [CargoController::class, 'create'])->name('cargos.create');
+
+    // Rota para salvar um novo cargo no banco de dados
+    Route::post('/cargos', [CargoController::class, 'store'])->name('cargos.store');
+
+    // Rota para exibir os detalhes de um cargo específico
+    Route::get('/cargos/{id}', [CargoController::class, 'show'])->name('cargos.show');
+
+    // Rota para exibir o formulário de edição de um cargo existente
+    Route::get('/cargos/{id}/edit', [CargoController::class, 'edit'])->name('cargos.edit');
+
+    // Rota para atualizar um cargo no banco de dados
+    Route::put('/cargos/{id}', [CargoController::class, 'update'])->name('cargos.update');
+
+    // Rota para excluir um cargo do banco de dados
+    Route::delete('/cargos/{id}', [CargoController::class, 'destroy'])->name('cargos.destroy');
 
 
     // Rota para exibir a lista de unidades

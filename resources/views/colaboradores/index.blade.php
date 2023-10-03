@@ -16,6 +16,7 @@
                                 <th class="px-4 py-2">Nome</th>
                                 <th class="px-4 py-2">CPF do Colaborador</th>
                                 <th class="px-4 py-2">Unidade</th>
+                                <th class="px-4 py-2">Cargo</th>
                                 <th class="px-4 py-2">Ações</th>
                             </tr>
                         </thead>
@@ -33,6 +34,16 @@
                                         {{ $unidade->nome }}
                                     @else
                                         Unidade não encontrada
+                                    @endif
+                                </td>
+                                <td class="border px-4 py-2">
+                                    @php
+                                        $cargo = $cargos->firstWhere('cod_cargo', $colaborador->cod_cargo);
+                                    @endphp
+                                    @if ($cargo)
+                                        {{ $cargo->nome }}
+                                    @else
+                                        Cargo não encontrada
                                     @endif
                                 </td>
                                 <td class="border px-4 py-2">

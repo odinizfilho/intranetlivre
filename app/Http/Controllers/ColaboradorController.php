@@ -19,7 +19,7 @@ class ColaboradorController extends Controller
         $cargos = Cargo::all();
         $usuarios = User::all();
         $colaboradores = Colaborador::paginate(10); // Paginação para listar 10 colaboradores por página
-        return view('colaboradores.index', compact('colaboradores','unidades', 'cargos', 'usuarios'));
+        return view('colaboradores.index', compact('colaboradores', 'unidades', 'cargos', 'usuarios'));
     }
 
     public function create()
@@ -66,7 +66,48 @@ class ColaboradorController extends Controller
         }
     }
 
+    public function edit(Colaborador $colaborador)
+    {
+        $unidades = Unidade::all();
+        $cargos = Cargo::all();
+        $usuarios = User::all();
 
+        return view('colaboradores.edit', compact('colaborador', 'unidades', 'cargos', 'usuarios'));
+    }
+
+    public function update(Request $request, Colaborador $colaborador)
+    {
+        // Validar os dados do formulário
+        $request->validate([
+            'matricula' => 'required|unique:d_colaborador,matricula,' . $colaborador->id,
+            // Adicione outras regras de validação aqui
+        ]);
+
+        try {
+            // Atualizar os dados do colaborador com base nos dados do formulário
+            $colaborador->update([
+                'matricula' => $request->input('matricula'),
+                'cod_unidade' => $request->input('cod_unidade'),
+                'data_nascimento' => $request->input('data_nascimento'),
+                'telefone' => $request->input('telefone'),
+                'ramal' => $request->input('ramal'),
+                'cod_cargo' => $request->input('cod_cargo'),
+                'data_admissao' => $request->input('data_admissao'),
+                'matricula_gestor' => $request->input('matricula_gestor'),
+            ]);
+
+            return redirect()->route('colaboradores.index')->with('success', 'Colaborador atualizado com sucesso!');
+        } catch (QueryException $e) {
+            // Verificar se a exceção é devido a uma violação de chave estrangeira
+            if ($e->errorInfo[1] == 1452) {
+                $errorMessage = 'Erro ao atualizar o colaborador. A unidade especificada não existe.';
+            } else {
+                $errorMessage = 'Erro ao atualizar o colaborador. Por favor, verifique os dados e tente novamente.';
+            }
+
+            return redirect()->route('colaboradores.edit', $colaborador)->withErrors([$errorMessage]);
+        }
+    }
 
     // Adicione métodos para edição, atualização e exclusão de colaboradores aqui
 
