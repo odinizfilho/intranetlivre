@@ -23,9 +23,18 @@
                             @foreach($colaboradores as $colaborador)
                             <tr>
                                 <td class="border px-4 py-2">{{ $colaborador->id }}</td>
-                                <td class="border px-4 py-2">{{ $colaborador->nome }}</td>
-                                <td class="border px-4 py-2">{{ $colaborador->cpf_colaborador }}</td>
-                                <td class="border px-4 py-2">{{ $colaborador->unidade->nome }}</td>
+                                <td class="border px-4 py-2">{{ $colaborador->user->name }}</td>
+                                <td class="border px-4 py-2">{{ $colaborador->matricula }}</td>
+                                <td class="border px-4 py-2">
+                                    @php
+                                        $unidade = $unidades->firstWhere('cod_unidade', $colaborador->cod_unidade);
+                                    @endphp
+                                    @if ($unidade)
+                                        {{ $unidade->nome }}
+                                    @else
+                                        Unidade não encontrada
+                                    @endif
+                                </td>
                                 <td class="border px-4 py-2">
                                     <a href="{{ route('colaboradores.show', $colaborador->id) }}" class="text-blue-500 hover:underline">Detalhes</a>
                                     <a href="{{ route('colaboradores.edit', $colaborador->id) }}" class="text-yellow-500 hover:underline">Editar</a>

@@ -11,7 +11,9 @@
         "laravel/jetstream": "^4.0",
         "laravel/sanctum": "^3.2",
         "laravel/tinker": "^2.8",
-        "livewire/livewire": "^3.0"
+        "league/csv": "9.11",
+        "livewire/livewire": "^3.0",
+        "rap2hpoutre/fast-excel": "5.3"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

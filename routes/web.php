@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ColaboradorController;
 use App\Http\Controllers\UnidadeController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,64 +30,74 @@ Route::middleware([
 
 
 
-    
+
     // Rota para exibir a lista de unidades
     Route::get('/unidades', [UnidadeController::class, 'index'])->name('unidades.index');
-    
+
     // Rota para exibir o formulário de criação de uma nova unidade
     Route::get('/unidades/create', [UnidadeController::class, 'create'])->name('unidades.create');
-    
+
     // Rota para salvar uma nova unidade no banco de dados
     Route::post('/unidades', [UnidadeController::class, 'store'])->name('unidades.store');
-    
+
     // Rota para exibir os detalhes de uma unidade específica
     Route::get('/unidades/{id}', [UnidadeController::class, 'show'])->name('unidades.show');
-    
+
     // Rota para exibir o formulário de edição de uma unidade existente
     Route::get('/unidades/{id}/edit', [UnidadeController::class, 'edit'])->name('unidades.edit');
-    
+
     // Rota para atualizar uma unidade no banco de dados
     Route::put('/unidades/{id}', [UnidadeController::class, 'update'])->name('unidades.update');
-    
+
     // Rota para excluir uma unidade do banco de dados
     Route::delete('/unidades/{id}', [UnidadeController::class, 'destroy'])->name('unidades.destroy');
-    
 
-// Listar todos os colaboradores
-Route::get('/colaboradores', [ColaboradorController::class, 'index'])->name('colaboradores.index');
+    // importadores
 
-// Exibir formulário de criação de um novo colaborador
-Route::get('/colaboradores/create', [ColaboradorController::class, 'create'])->name('colaboradores.create');
+    // Rota para exibir o formulário de importação de CSV
+    Route::get('/import/unidades', [UnidadeController::class, 'import'])->name('unidades.import');
 
+    // Rota para processar o envio do arquivo CSV
+    Route::post('/import/unidades', [UnidadeController::class, 'importcsv'])->name('unidades.importcsv');
 
-
-// Exibir detalhes de um colaborador específico
-Route::get('/colaboradores/{colaborador}', [ColaboradorController::class, 'show'])->name('colaboradores.show');
+    Route::get('/import/unidades-csv', [UnidadeController::class, 'generateexemplocsv'])->name('unidades.exemplo-csv');
 
 
+    // Listar todos os colaboradores
+    Route::get('/colaboradores', [ColaboradorController::class, 'index'])->name('colaboradores.index');
 
-// Armazenar um novo colaborador no banco de dados
-Route::post('/colaboradores', [ColaboradorController::class, 'store'])->name('colaboradores.store');
+    // Exibir formulário de criação de um novo colaborador
+    Route::get('/colaboradores/create', [ColaboradorController::class, 'create'])->name('colaboradores.create');
 
-// Exibir formulário de edição de um colaborador existente
-Route::get('/colaboradores/{colaborador}/edit', [ColaboradorController::class, 'edit'])->name('colaboradores.edit');
 
-// Atualizar um colaborador no banco de dados
-Route::put('/colaboradores/{colaborador}', [ColaboradorController::class, 'update'])->name('colaboradores.update');
 
-// Exibir formulário de confirmação para excluir um colaborador
-Route::get('/colaboradores/{colaborador}/delete', [ColaboradorController::class, 'delete'])->name('colaboradores.delete');
+    // Exibir detalhes de um colaborador específico
+    Route::get('/colaboradores/{colaborador}', [ColaboradorController::class, 'show'])->name('colaboradores.show');
 
-// Excluir um colaborador do banco de dados
-Route::delete('/colaboradores/{colaborador}', [ColaboradorController::class, 'destroy'])->name('colaboradores.destroy');
+
+
+    // Armazenar um novo colaborador no banco de dados
+    Route::post('/colaboradores', [ColaboradorController::class, 'store'])->name('colaboradores.store');
+
+    // Exibir formulário de edição de um colaborador existente
+    Route::get('/colaboradores/{colaborador}/edit', [ColaboradorController::class, 'edit'])->name('colaboradores.edit');
+
+    // Atualizar um colaborador no banco de dados
+    Route::put('/colaboradores/{colaborador}', [ColaboradorController::class, 'update'])->name('colaboradores.update');
+
+    // Exibir formulário de confirmação para excluir um colaborador
+    Route::get('/colaboradores/{colaborador}/delete', [ColaboradorController::class, 'delete'])->name('colaboradores.delete');
+
+    // Excluir um colaborador do banco de dados
+    Route::delete('/colaboradores/{colaborador}', [ColaboradorController::class, 'destroy'])->name('colaboradores.destroy');
 
 });
 
- // Rotas Livres
- Route::get('/i', function () {
+// Rotas Livres
+Route::get('/i', function () {
     return view('intralivre.home');
 });
 
 Route::fallback(function () {
     return view('errors.404');
-   });
+});

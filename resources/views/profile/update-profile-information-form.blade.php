@@ -61,9 +61,9 @@
 
         <!-- CPF -->
 <div class="col-span-6 sm:col-span-4">
-    <x-label for="cpf" value="{{ __('CPF') }}" />
-    <x-input x-mask="999.999.999-99" id="cpf" type="text" class="mt-1 block w-full" maxlength="14" wire:model="state.cpf" autocomplete="cpf" />
-    <x-input-error for="cpf" class="mt-2" />
+    <x-label for="matricula" value="{{ __('Matricula') }}" />
+    <x-input x-mask="9999" id="matricula" type="text" class="mt-1 block w-full" maxlength="14" wire:model="state.matricula" autocomplete="matricula" />
+    <x-input-error for="matricula" class="mt-2" />
 </div>
 
 

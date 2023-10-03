@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('d_cargos', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('cod_cargo')->unique();
+            $table->string('cod_cargo')->unique();
             $table->string('nome');
             $table->timestamps();
         });

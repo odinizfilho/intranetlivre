@@ -16,19 +16,16 @@ return new class extends Migration
     if (!Schema::hasTable('d_colaborador')) {
         Schema::create('d_colaborador', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('cpf_colaborador')->unique();
-            $table->foreignId('cod_unidade');
+            $table->string('matricula')->unique();
+            $table->string('cod_unidade');
             $table->date('data_nascimento');
             $table->string('telefone');
             $table->string('ramal')->nullable();
-            $table->foreignId('cod_cargo');
+            $table->string('cod_cargo');
             $table->date('data_admissao');
-            $table->foreignId('cpf_gestor');
+            $table->string('matricula_gestor');
             
-            $table->foreign('cpf_colaborador')->references('cpf')->on('users');
-            $table->foreign('cod_unidade')->references('cod_unidade')->on('d_unidade');
-            $table->foreign('cod_cargo')->references('cod_cargo')->on('d_cargos');
-            $table->foreign('cpf_gestor')->references('cpf')->on('users');
+       
             
             $table->timestamps();
         });

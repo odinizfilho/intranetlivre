@@ -17,10 +17,10 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
      */
     public function update(User $user, array $input): void
     {
-        $input['cpf'] = preg_replace('/[^0-9]/', '', $input['cpf']);
+        //$input['cpf'] = preg_replace('/[^0-9]/', '', $input['cpf']);
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
-            'cpf' => ['nullable', 'string', 'max:255'],
+            'matricula' => ['nullable', 'string', 'max:255'],
             'email' => ['required', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
             'photo' => ['nullable', 'mimes:jpg,jpeg,png', 'max:1024'],
         ])->validateWithBag('updateProfileInformation');
@@ -36,7 +36,7 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
             $user->forceFill([
                 'name' => $input['name'],
                 'email' => $input['email'],
-                'cpf' => $input['cpf'],
+                'matricula' => $input['matricula'],
             ])->save();
         }
     }
@@ -51,7 +51,7 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
         $user->forceFill([
             'name' => $input['name'],
             'email' => $input['email'],
-            'cpf' => $input['cpf'],
+            'matricula' => $input['matricula'],
             'email_verified_at' => null,
         ])->save();
 
