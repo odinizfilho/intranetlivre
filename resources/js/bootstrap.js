@@ -30,3 +30,12 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     forceTLS: (import.meta.env.VITE_PUSHER_SCHEME ?? 'https') === 'https',
 //     enabledTransports: ['ws', 'wss'],
 // });
+import Echo from 'laravel-echo';
+import Pusher from 'pusher-js';
+import echoOptions from '../../vendor/basement-chat/basement-chat/dist/basement.echo-options.esm'
+
+window.Pusher = Pusher;
+window.Echo = new Echo(echoOptions);
+
+import Alpine from 'alpinejs';
+window.Alpine = Alpine;

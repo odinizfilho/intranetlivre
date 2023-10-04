@@ -12,6 +12,7 @@ use Rap2hpoutre\FastExcel\FastExcel;
 
 class UnidadeController extends Controller
 {
+    
     public function index()
     {
         $unidades = Unidade::all();

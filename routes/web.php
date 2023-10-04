@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ColaboradorController;
 use App\Http\Controllers\UnidadeController;
 use App\Http\Controllers\CargoController;
+use App\Http\Controllers\SlideController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +18,7 @@ use App\Http\Controllers\CargoController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/login');
 });
 
 Route::middleware([
@@ -29,6 +30,30 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 
+
+
+
+
+    // Rota para exibir a lista de slides (index)
+    Route::get('/slides', [SlideController::class, 'index'])->name('slides.index');
+
+    // Rota para exibir o formulário de criação de slide (create)
+    Route::get('/slides/create', [SlideController::class, 'create'])->name('slides.create');
+
+    // Rota para armazenar um novo slide (store)
+    Route::post('/slides', [SlideController::class, 'store'])->name('slides.store');
+
+    // Rota para exibir os detalhes de um slide específico (show)
+    Route::get('/slides/{slide}', [SlideController::class, 'show'])->name('slides.show');
+
+    // Rota para exibir o formulário de edição de um slide (edit)
+    Route::get('/slides/{slide}/edit', [SlideController::class, 'edit'])->name('slides.edit');
+
+    // Rota para atualizar um slide específico (update)
+    Route::put('/slides/{slide}', [SlideController::class, 'update'])->name('slides.update');
+
+    // Rota para excluir um slide específico (destroy)
+    Route::delete('/slides/{slide}', [SlideController::class, 'destroy'])->name('slides.destroy');
 
 
     // Rota para exibir a lista de cargos
