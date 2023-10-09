@@ -1,6 +1,8 @@
-<x-intra-layout>
+<x-guest-layout>
     <x-authentication-card>
-       
+        <x-slot name="logo">
+            <x-authentication-card-logo />
+        </x-slot>
 
         <x-validation-errors class="mb-4" />
 
@@ -9,8 +11,8 @@
                 {{ session('status') }}
             </div>
         @endif
-        
-        <form class="mt-8 space-y-6" method="POST" action="{{ route('login') }}">
+
+        <form method="POST" action="{{ route('login') }}">
             @csrf
 
             <div>
@@ -19,7 +21,7 @@
             </div>
 
             <div class="mt-4">
-                <x-label for="password" value="{{ __('Senha') }}" />
+                <x-label for="password" value="{{ __('Password') }}" />
                 <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
             </div>
 
@@ -29,19 +31,18 @@
                     <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
                 </label>
             </div>
-            <x-button>
-                {{ __('Log in') }}
-            </x-button>
-            <div class="text-sm font-medium text-gray-500 dark:text-gray-400">
+
+            <div class="flex items-center justify-end mt-4">
                 @if (Route::has('password.request'))
-                    <a class="text-primary-700 hover:underline dark:text-primary-500" href="{{ route('password.request') }}">
-                        {{ __('Forgot your password?') }} <a >Recupere</a> 
+                    <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
+                        {{ __('Forgot your password?') }}
                     </a>
                 @endif
-            </div>
 
-                
+                <x-button class="ml-4">
+                    {{ __('Log in') }}
+                </x-button>
             </div>
         </form>
     </x-authentication-card>
-</x-intra-layout>
+</x-guest-layout>

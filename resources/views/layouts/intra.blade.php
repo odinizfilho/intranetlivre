@@ -37,7 +37,7 @@
 
 
     </head>
-    <body class="bg-gray-50 dark:bg-gray-800">
+    <body class="bg-gray-50">
             {{ $slot }}
 
         @livewireScripts

@@ -6,8 +6,10 @@ use Illuminate\Http\Request;
 use App\Models\Colaborador;
 use App\Models\Unidade;
 use App\Models\Cargo;
+use App\Models\Setor;
 use App\Models\User;
 use Illuminate\Database\QueryException;
+use Carbon\Carbon;
 
 
 
@@ -18,8 +20,9 @@ class ColaboradorController extends Controller
         $unidades = Unidade::all();
         $cargos = Cargo::all();
         $usuarios = User::all();
+        $setores = Setor::all();
         $colaboradores = Colaborador::paginate(10); // Paginação para listar 10 colaboradores por página
-        return view('colaboradores.index', compact('colaboradores', 'unidades', 'cargos', 'usuarios'));
+        return view('colaboradores.index', compact('colaboradores', 'unidades', 'cargos', 'usuarios', 'setores'));
     }
 
     public function create()
@@ -27,7 +30,8 @@ class ColaboradorController extends Controller
         $unidades = Unidade::all();
         $cargos = Cargo::all();
         $usuarios = User::all();
-        return view('colaboradores.create', compact('unidades', 'cargos', 'usuarios'));
+        $setores = Setor::all();
+        return view('colaboradores.create', compact('unidades', 'cargos', 'usuarios', 'setores'));
     }
 
     public function store(Request $request)
@@ -47,6 +51,7 @@ class ColaboradorController extends Controller
                 'telefone' => $request->input('telefone'),
                 'ramal' => $request->input('ramal'),
                 'cod_cargo' => $request->input('cod_cargo'),
+                'cod_setor' => $request->input('cod_setor'),
                 'data_admissao' => $request->input('data_admissao'),
                 'matricula_gestor' => $request->input('matricula_gestor'),
             ]);
@@ -71,8 +76,9 @@ class ColaboradorController extends Controller
         $unidades = Unidade::all();
         $cargos = Cargo::all();
         $usuarios = User::all();
+        $setores = Setor::all();
 
-        return view('colaboradores.edit', compact('colaborador', 'unidades', 'cargos', 'usuarios'));
+        return view('colaboradores.edit', compact('colaborador', 'unidades', 'cargos', 'usuarios', 'setores'));
     }
 
     public function update(Request $request, Colaborador $colaborador)
@@ -92,6 +98,7 @@ class ColaboradorController extends Controller
                 'telefone' => $request->input('telefone'),
                 'ramal' => $request->input('ramal'),
                 'cod_cargo' => $request->input('cod_cargo'),
+                'cod_setor' => $request->input('cod_setor'),
                 'data_admissao' => $request->input('data_admissao'),
                 'matricula_gestor' => $request->input('matricula_gestor'),
             ]);
@@ -114,5 +121,17 @@ class ColaboradorController extends Controller
     public function show(Colaborador $colaborador)
     {
         return view('colaboradores.show', compact('colaborador'));
+    }
+
+    public function aniversariantes()
+    {
+        // Obtém o mês atual
+        $mesAtual = Carbon::now()->month;
+        $usuarios = User::all();
+    
+        // Consulta os colaboradores com aniversário no mês atual usando o modelo
+        $aniversariantes = Colaborador::whereMonth('data_nascimento', $mesAtual)->get();
+    
+        return view('colaboradores.aniversariantes', compact('aniversariantes', 'usuarios'));
     }
 }

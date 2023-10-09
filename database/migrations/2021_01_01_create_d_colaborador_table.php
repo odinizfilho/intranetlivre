@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('telefone');
             $table->string('ramal')->nullable();
             $table->string('cod_cargo');
+			$table->string('cod_setor');
             $table->date('data_admissao');
             $table->string('matricula_gestor');
             

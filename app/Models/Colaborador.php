@@ -15,6 +15,7 @@ class Colaborador extends Model
         'telefone',
         'ramal',
         'cod_cargo',
+        'cod_setor',
         'data_admissao',
         'matricula_gestor',
     ];

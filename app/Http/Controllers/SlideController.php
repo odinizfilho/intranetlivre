@@ -27,38 +27,38 @@ class SlideController extends Controller
     /**
      * Armazena um novo slide no banco de dados.
      */
+
     public function store(Request $request)
-{
-    $request->validate([
-        'image_url' => 'required|image|mimes:svg,jpeg,png,jpg,gif|max:2048', // Validação da imagem
-        'title' => 'nullable|string',
-        'display_order' => 'nullable|integer',
-        // Outras regras de validação para os campos do slide aqui
-    ]);
+    {
+        $request->validate([
+            'title' => 'nullable|string',
+            'display_order' => 'nullable|integer',
+            'image_url' => 'image|mimes:jpeg,png,jpg,gif,webp|max:2048',
+        ]);
 
-    $imagePath = null;
+        $imagePath = null;
 
-    if ($request->hasFile('image_url')) {
-        $image = $request->file('image_url');
-        $imageName = time() . '.' . $image->getClientOriginalExtension();
-        $imagePath = $image->storeAs('uploads', $imageName, 'public');
-        // Certifique-se de criar a pasta 'uploads' no diretório 'public' se ainda não existir.
-        $imagePath = 'uploads/' . $imageName;
+        if ($request->hasFile('image_url')) {
+            $image = $request->file('image_url');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $imagePath = $image->storeAs('upload', $imageName, 'public');
+            $imagePath = 'upload/' . $imageName;
+        }
+
+        $slide = Slide::create([
+            'title' => $request->input('title'),
+            'display_order' => $request->input('display_order'),
+            'image_url' => $imagePath,
+        ]);
+
+
+
+        // Obtém a URL do post
+        $slideUrl = route('slides.show', $slide->id);
+
+        // Enviar e-mail para todos os usuários
+        return redirect()->route('slides.show', $slide->id)->with('success', 'Blog post created successfully!');
     }
-
-    // Crie um novo slide com os dados do formulário e o caminho da imagem
-    $slide = new Slide([
-        'image_url' => $imagePath,
-        'title' => $request->input('title'),
-        'display_order' => $request->input('display_order'),
-        // Outros campos do slide aqui
-    ]);
-
-    $slide->save();
-
-    return redirect()->route('slides.index')
-        ->with('success', 'Slide criado com sucesso!');
-}
 
 
     /**

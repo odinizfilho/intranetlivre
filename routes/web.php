@@ -5,6 +5,9 @@ use App\Http\Controllers\ColaboradorController;
 use App\Http\Controllers\UnidadeController;
 use App\Http\Controllers\CargoController;
 use App\Http\Controllers\SlideController;
+use App\Http\Controllers\BlogController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\SetorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,9 +29,7 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::match(['get', 'post'], '/dashboard', [BlogController::class, 'dashboard'])->name('dashboard');
 
 
 
@@ -78,6 +79,28 @@ Route::middleware([
     Route::delete('/cargos/{id}', [CargoController::class, 'destroy'])->name('cargos.destroy');
 
 
+      // Rota para exibir a lista de setor
+      Route::get('/setor', [SetorController::class, 'index'])->name('setor.index');
+
+      // Rota para exibir o formulário de criação de um novo cargo
+      Route::get('/setor/create', [SetorController::class, 'create'])->name('setor.create');
+  
+      // Rota para salvar um novo cargo no banco de dados
+      Route::post('/setor', [SetorController::class, 'store'])->name('setor.store');
+  
+      // Rota para exibir os detalhes de um cargo específico
+      Route::get('/setor/{id}', [SetorController::class, 'show'])->name('setor.show');
+  
+      // Rota para exibir o formulário de edição de um cargo existente
+      Route::get('/setor/{id}/edit', [SetorController::class, 'edit'])->name('setor.edit');
+  
+      // Rota para atualizar um cargo no banco de dados
+      Route::put('/setor/{id}', [SetorController::class, 'update'])->name('setor.update');
+  
+      // Rota para excluir um cargo do banco de dados
+      Route::delete('/setor/{id}', [SetorController::class, 'destroy'])->name('setor.destroy');
+
+
     // Rota para exibir a lista de unidades
     Route::get('/unidades', [UnidadeController::class, 'index'])->name('unidades.index');
 
@@ -113,6 +136,8 @@ Route::middleware([
     // Listar todos os colaboradores
     Route::get('/colaboradores', [ColaboradorController::class, 'index'])->name('colaboradores.index');
 
+    Route::get('/aniversariantes', [ColaboradorController::class, 'aniversariantes'])->name('colaboradores.aniversariantes');
+
     // Exibir formulário de criação de um novo colaborador
     Route::get('/colaboradores/create', [ColaboradorController::class, 'create'])->name('colaboradores.create');
 
@@ -137,6 +162,20 @@ Route::middleware([
 
     // Excluir um colaborador do banco de dados
     Route::delete('/colaboradores/{colaborador}', [ColaboradorController::class, 'destroy'])->name('colaboradores.destroy');
+
+    // Rotas para categorias
+    Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
+    Route::get('/categories/create', [CategoryController::class, 'create'])->name('categories.create');
+    Route::post('/categories', [CategoryController::class, 'store'])->name('categories.store');
+
+    //blog
+    Route::get('/posts', [BlogController::class, 'index'])->name('posts.index');
+    Route::get('/posts/create', [BlogController::class, 'create'])->name('posts.create');
+    Route::post('/posts', [BlogController::class, 'store'])->name('posts.store');
+    Route::get('/posts/{id}', [BlogController::class, 'show'])->name('posts.show');
+    Route::get('/posts/{id}/edit', [BlogController::class, 'edit'])->name('posts.edit');
+    Route::put('/posts/{id}', [BlogController::class, 'update'])->name('posts.update');
+    Route::delete('/posts/{id}', [BlogController::class, 'destroy'])->name('posts.destroy');
 
 });
 

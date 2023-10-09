@@ -17,6 +17,7 @@
                                 <th class="px-4 py-2">CPF do Colaborador</th>
                                 <th class="px-4 py-2">Unidade</th>
                                 <th class="px-4 py-2">Cargo</th>
+                                <th class="px-4 py-2">Setor</th>
                                 <th class="px-4 py-2">Ações</th>
                             </tr>
                         </thead>
@@ -24,7 +25,16 @@
                             @foreach($colaboradores as $colaborador)
                             <tr>
                                 <td class="border px-4 py-2">{{ $colaborador->id }}</td>
-                                <td class="border px-4 py-2">{{ $colaborador->user->name }}</td>
+                                <td class="border px-4 py-2">
+                                    @php
+                                    $usuario = $usuarios->firstWhere('matricula', $colaborador->matricula);
+                                @endphp
+                                @if ($usuario)
+                                    {{ $usuario->name }}
+                                @else
+                                    Nome não encontrada
+                                @endif
+                                </td>
                                 <td class="border px-4 py-2">{{ $colaborador->matricula }}</td>
                                 <td class="border px-4 py-2">
                                     @php
@@ -44,6 +54,16 @@
                                         {{ $cargo->nome }}
                                     @else
                                         Cargo não encontrada
+                                    @endif
+                                </td>
+                                <td class="border px-4 py-2">
+                                    @php
+                                        $setor = $setores->firstWhere('cod_setor', $colaborador->cod_setor);
+                                    @endphp
+                                    @if ($setor)
+                                        {{ $setor->nome }}
+                                    @else
+                                        Setor não encontrada
                                     @endif
                                 </td>
                                 <td class="border px-4 py-2">

@@ -10,6 +10,7 @@
             <div class="p-6">
                 <h2 class="text-2xl font-semibold">{{ $slide->title }}</h2>
                 <p class="text-gray-600">Ordem de Exibição: {{ $slide->display_order }}</p>
+                <img src="{{ asset($slide->image_url) }}"/>
                 <!-- Outros detalhes do slide aqui -->
             </div>
         </div>
