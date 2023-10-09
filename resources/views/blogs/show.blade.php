@@ -23,8 +23,7 @@
 
         </div>
     </main>
-    <livewire:comments :model="$blog"/>
-</br>
+    <livewire:comments :model="$post"/>
     <footer class="bg-white">
     <hr class="my-10 border-gray-200" />
 </footer>

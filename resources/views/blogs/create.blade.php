@@ -34,8 +34,9 @@
                         </div>
 
                         <div class="mb-4">
-                            <label for="categories" class="block w-full p-4 bg-gray-900 text-gray-100 border border-gray-600 rounded-lg focus:border-blue-500 focus:ring-blue-500">{{ __('Categorias') }}</label>
-                            <select name="categories[]" id="categories" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" multiple>
+                            <label for="Cargo"
+                                class="block text-gray-700 text-sm font-bold mb-2">{{ __('Categoria') }}</label>
+                            <select name="categories[]" id="categories" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                                 @foreach ($categories as $category)
                                     <option value="{{ $category->id }}">{{ $category->name }}</option>
                                 @endforeach
