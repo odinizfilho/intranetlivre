@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e7c20df2c8bfb2244de9806d45c23098",
+    "content-hash": "f53c48d732f53086fbaf02c2077c9f18",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -59,85 +59,6 @@
                 "source": "https://github.com/Bacon/BaconQrCode/tree/2.0.8"
             },
             "time": "2022-12-07T17:46:57+00:00"
-        },
-        {
-            "name": "basement-chat/basement-chat",
-            "version": "v1.1.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/basement-chat/basement-chat.git",
-                "reference": "8d973333a76551feab407c1f92f37ad794e12f68"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/basement-chat/basement-chat/zipball/8d973333a76551feab407c1f92f37ad794e12f68",
-                "reference": "8d973333a76551feab407c1f92f37ad794e12f68",
-                "shasum": ""
-            },
-            "require": {
-                "laravel/framework": "^9.0.0 | ^10.0.0",
-                "laravel/sanctum": "^2.14.0 | ^3.0.1",
-                "php": "^8.0",
-                "spatie/enum": "^3.13.0",
-                "spatie/laravel-package-tools": "^1.13.6"
-            },
-            "require-dev": {
-                "beyondcode/laravel-dump-server": "^1.8.0",
-                "laravel/pint": "^1.2.0",
-                "nunomaduro/collision": "^6.4.0",
-                "nunomaduro/larastan": "^2.2.5",
-                "nunomaduro/phpinsights": "^2.6.1",
-                "orchestra/canvas": "^7.5.0",
-                "orchestra/testbench": "^7.24.1",
-                "orchestra/testbench-dusk": "^7.25.1",
-                "phpstan/phpstan-deprecation-rules": "^1.0.0",
-                "phpstan/phpstan-phpunit": "^1.1.1",
-                "phpunit/phpunit": "^9.5.25",
-                "pusher/pusher-php-server": "^7.2.1",
-                "squizlabs/php_codesniffer": "^3.7.1"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "BasementChat\\Basement\\BasementServiceProvider"
-                    ],
-                    "aliases": {
-                        "Basement": "BasementChat\\Basement\\Facades\\Basement"
-                    }
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "BasementChat\\Basement\\": "src",
-                    "BasementChat\\Basement\\Database\\Factories\\": "database/factories"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Yusuf T.",
-                    "email": "dev.yusuftaufiq@gmail.com"
-                }
-            ],
-            "description": "Add a real-time chat widget to your Laravel application.",
-            "homepage": "https://github.com/basement-chat/basement-chat",
-            "keywords": [
-                "basement",
-                "chat",
-                "laravel",
-                "php",
-                "realtime",
-                "websocket"
-            ],
-            "support": {
-                "issues": "https://github.com/basement-chat/basement-chat/issues",
-                "source": "https://github.com/basement-chat/basement-chat/tree/v1.1.1"
-            },
-            "time": "2023-06-03T09:37:47+00:00"
         },
         {
             "name": "brick/math",
@@ -1354,16 +1275,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v10.26.2",
+            "version": "v10.27.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "6e5440f7c518f26b4495e5d7e4796ec239e26df9"
+                "reference": "616f81bd6dd8aa2e26a9fc21d9c95e98bd30803b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/6e5440f7c518f26b4495e5d7e4796ec239e26df9",
-                "reference": "6e5440f7c518f26b4495e5d7e4796ec239e26df9",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/616f81bd6dd8aa2e26a9fc21d9c95e98bd30803b",
+                "reference": "616f81bd6dd8aa2e26a9fc21d9c95e98bd30803b",
                 "shasum": ""
             },
             "require": {
@@ -1550,7 +1471,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2023-10-03T14:24:20+00:00"
+            "time": "2023-10-09T15:15:28+00:00"
         },
         {
             "name": "laravel/jetstream",
@@ -2357,16 +2278,16 @@
         },
         {
             "name": "livewire/livewire",
-            "version": "v3.0.6",
+            "version": "v3.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/livewire/livewire.git",
-                "reference": "1ec54cdf57c6f1bf734bb14f9732904473b91c3f"
+                "reference": "a2fc40f6121362581e72d5da5d820a6af00f62b0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/livewire/livewire/zipball/1ec54cdf57c6f1bf734bb14f9732904473b91c3f",
-                "reference": "1ec54cdf57c6f1bf734bb14f9732904473b91c3f",
+                "url": "https://api.github.com/repos/livewire/livewire/zipball/a2fc40f6121362581e72d5da5d820a6af00f62b0",
+                "reference": "a2fc40f6121362581e72d5da5d820a6af00f62b0",
                 "shasum": ""
             },
             "require": {
@@ -2419,7 +2340,7 @@
             "description": "A front-end framework for Laravel.",
             "support": {
                 "issues": "https://github.com/livewire/livewire/issues",
-                "source": "https://github.com/livewire/livewire/tree/v3.0.6"
+                "source": "https://github.com/livewire/livewire/tree/v3.0.7"
             },
             "funding": [
                 {
@@ -2427,7 +2348,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-10-06T19:19:24+00:00"
+            "time": "2023-10-09T13:59:17+00:00"
         },
         {
             "name": "mobiledetect/mobiledetectlib",
@@ -4252,142 +4173,6 @@
                 }
             ],
             "time": "2023-09-01T06:07:32+00:00"
-        },
-        {
-            "name": "spatie/enum",
-            "version": "3.13.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/spatie/enum.git",
-                "reference": "f1a0f464ba909491a53e60a955ce84ad7cd93a2c"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/spatie/enum/zipball/f1a0f464ba909491a53e60a955ce84ad7cd93a2c",
-                "reference": "f1a0f464ba909491a53e60a955ce84ad7cd93a2c",
-                "shasum": ""
-            },
-            "require": {
-                "ext-json": "*",
-                "php": "^8.0"
-            },
-            "require-dev": {
-                "fakerphp/faker": "^1.9.1",
-                "larapack/dd": "^1.1",
-                "phpunit/phpunit": "^9.0",
-                "vimeo/psalm": "^4.3"
-            },
-            "suggest": {
-                "fakerphp/faker": "To use the enum faker provider",
-                "phpunit/phpunit": "To use the enum assertions"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Spatie\\Enum\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Brent Roose",
-                    "email": "brent@spatie.be",
-                    "homepage": "https://spatie.be",
-                    "role": "Developer"
-                },
-                {
-                    "name": "Tom Witkowski",
-                    "email": "dev@gummibeer.de",
-                    "homepage": "https://gummibeer.de",
-                    "role": "Developer"
-                }
-            ],
-            "description": "PHP Enums",
-            "homepage": "https://github.com/spatie/enum",
-            "keywords": [
-                "enum",
-                "enumerable",
-                "spatie"
-            ],
-            "support": {
-                "docs": "https://docs.spatie.be/enum",
-                "issues": "https://github.com/spatie/enum/issues",
-                "source": "https://github.com/spatie/enum"
-            },
-            "funding": [
-                {
-                    "url": "https://spatie.be/open-source/support-us",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/spatie",
-                    "type": "github"
-                }
-            ],
-            "time": "2022-04-22T08:51:55+00:00"
-        },
-        {
-            "name": "spatie/laravel-package-tools",
-            "version": "1.16.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/spatie/laravel-package-tools.git",
-                "reference": "cc7c991555a37f9fa6b814aa03af73f88026a83d"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-package-tools/zipball/cc7c991555a37f9fa6b814aa03af73f88026a83d",
-                "reference": "cc7c991555a37f9fa6b814aa03af73f88026a83d",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/contracts": "^9.28|^10.0",
-                "php": "^8.0"
-            },
-            "require-dev": {
-                "mockery/mockery": "^1.5",
-                "orchestra/testbench": "^7.7|^8.0",
-                "pestphp/pest": "^1.22",
-                "phpunit/phpunit": "^9.5.24",
-                "spatie/pest-plugin-test-time": "^1.1"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Spatie\\LaravelPackageTools\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Freek Van der Herten",
-                    "email": "freek@spatie.be",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Tools for creating Laravel packages",
-            "homepage": "https://github.com/spatie/laravel-package-tools",
-            "keywords": [
-                "laravel-package-tools",
-                "spatie"
-            ],
-            "support": {
-                "issues": "https://github.com/spatie/laravel-package-tools/issues",
-                "source": "https://github.com/spatie/laravel-package-tools/tree/1.16.1"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/spatie",
-                    "type": "github"
-                }
-            ],
-            "time": "2023-08-23T09:04:39+00:00"
         },
         {
             "name": "symfony/console",
@@ -9198,16 +8983,16 @@
         },
         {
             "name": "spatie/laravel-ignition",
-            "version": "2.3.0",
+            "version": "2.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-ignition.git",
-                "reference": "4ed813d16edb5a1ab0d7f4b1d116c37ee8cdf3c0"
+                "reference": "bf21cd15aa47fa4ec5d73bbc932005c70261efc8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-ignition/zipball/4ed813d16edb5a1ab0d7f4b1d116c37ee8cdf3c0",
-                "reference": "4ed813d16edb5a1ab0d7f4b1d116c37ee8cdf3c0",
+                "url": "https://api.github.com/repos/spatie/laravel-ignition/zipball/bf21cd15aa47fa4ec5d73bbc932005c70261efc8",
+                "reference": "bf21cd15aa47fa4ec5d73bbc932005c70261efc8",
                 "shasum": ""
             },
             "require": {
@@ -9286,7 +9071,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-08-23T06:24:34+00:00"
+            "time": "2023-10-09T12:55:26+00:00"
         },
         {
             "name": "symfony/yaml",

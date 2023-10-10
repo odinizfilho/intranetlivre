@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Redirect;
 use App\Models\Setor;
 use Rap2hpoutre\FastExcel\FastExcel;
 
-class setorController extends Controller
+class SetorController extends Controller
 {
     public function index()
     {

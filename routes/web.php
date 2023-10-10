@@ -8,6 +8,8 @@ use App\Http\Controllers\SlideController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SetorController;
+use App\Http\Controllers\DSalaController;
+use App\Http\Controllers\FatoReservaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -79,26 +81,26 @@ Route::middleware([
     Route::delete('/cargos/{id}', [CargoController::class, 'destroy'])->name('cargos.destroy');
 
 
-      // Rota para exibir a lista de setor
-      Route::get('/setor', [SetorController::class, 'index'])->name('setor.index');
+    // Rota para exibir a lista de setor
+    Route::get('/setor', [SetorController::class, 'index'])->name('setor.index');
 
-      // Rota para exibir o formulário de criação de um novo cargo
-      Route::get('/setor/create', [SetorController::class, 'create'])->name('setor.create');
-  
-      // Rota para salvar um novo cargo no banco de dados
-      Route::post('/setor', [SetorController::class, 'store'])->name('setor.store');
-  
-      // Rota para exibir os detalhes de um cargo específico
-      Route::get('/setor/{id}', [SetorController::class, 'show'])->name('setor.show');
-  
-      // Rota para exibir o formulário de edição de um cargo existente
-      Route::get('/setor/{id}/edit', [SetorController::class, 'edit'])->name('setor.edit');
-  
-      // Rota para atualizar um cargo no banco de dados
-      Route::put('/setor/{id}', [SetorController::class, 'update'])->name('setor.update');
-  
-      // Rota para excluir um cargo do banco de dados
-      Route::delete('/setor/{id}', [SetorController::class, 'destroy'])->name('setor.destroy');
+    // Rota para exibir o formulário de criação de um novo cargo
+    Route::get('/setor/create', [SetorController::class, 'create'])->name('setor.create');
+
+    // Rota para salvar um novo cargo no banco de dados
+    Route::post('/setor', [SetorController::class, 'store'])->name('setor.store');
+
+    // Rota para exibir os detalhes de um cargo específico
+    Route::get('/setor/{id}', [SetorController::class, 'show'])->name('setor.show');
+
+    // Rota para exibir o formulário de edição de um cargo existente
+    Route::get('/setor/{id}/edit', [SetorController::class, 'edit'])->name('setor.edit');
+
+    // Rota para atualizar um cargo no banco de dados
+    Route::put('/setor/{id}', [SetorController::class, 'update'])->name('setor.update');
+
+    // Rota para excluir um cargo do banco de dados
+    Route::delete('/setor/{id}', [SetorController::class, 'destroy'])->name('setor.destroy');
 
 
     // Rota para exibir a lista de unidades
@@ -176,6 +178,28 @@ Route::middleware([
     Route::get('/posts/{id}/edit', [BlogController::class, 'edit'])->name('posts.edit');
     Route::put('/posts/{id}', [BlogController::class, 'update'])->name('posts.update');
     Route::delete('/posts/{id}', [BlogController::class, 'destroy'])->name('posts.destroy');
+
+    // Rotas para DSalaController
+    Route::get('/salas', [DSalaController::class, 'index'])->name('salas.index');
+    Route::get('/salas/create', [DSalaController::class, 'create'])->name('salas.create');
+    Route::post('/salas', [DSalaController::class, 'store'])->name('salas.store');
+    Route::get('/salas/{sala}', [DSalaController::class, 'show'])->name('salas.show');
+    Route::get('/salas/{sala}/edit', [DSalaController::class, 'edit'])->name('salas.edit');
+    Route::put('/salas/{sala}', [DSalaController::class, 'update'])->name('salas.update');
+    Route::delete('/salas/{sala}', [DSalaController::class, 'destroy'])->name('salas.destroy');
+
+    // Rotas para FatoReservaController
+    Route::get('/reservas', [FatoReservaController::class, 'index'])->name('reservas.index');
+    Route::get('/reservas/create', [FatoReservaController::class, 'create'])->name('reservas.create');
+    Route::post('/reservas', [FatoReservaController::class, 'store'])->name('reservas.store');
+    Route::get('/reservas/{reserva}', [FatoReservaController::class, 'show'])->name('reservas.show');
+    Route::get('/reservas/{reserva}/edit', [FatoReservaController::class, 'edit'])->name('reservas.edit');
+    Route::put('/reservas/{reserva}', [FatoReservaController::class, 'update'])->name('reservas.update');
+    Route::delete('/reservas/{reserva}', [FatoReservaController::class, 'destroy'])->name('reservas.destroy');
+
+    Route::get('/app/reservas.json', [FatoReservaController::class, 'getReservedDatesAndTimes'])
+    ->name('reservas.dates-and-times-reserved');
+    
 
 });
 
