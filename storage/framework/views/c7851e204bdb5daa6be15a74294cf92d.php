@@ -18,6 +18,26 @@
         <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6">
+                    <!-- Campos de filtro -->
+                    <form action="<?php echo e(route('reservas.index')); ?>" method="GET">
+                        <div class="mb-4">
+                            <label for="data_reserva">Data da Reserva:</label>
+                            <input type="date" name="data_reserva" id="data_reserva" value="<?php echo e(request('data_reserva')); ?>">
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="sala_id">Sala de Reunião:</label>
+                            <select name="sala_id" id="sala_id">
+                                <option value="">Todas as Salas</option>
+                                <?php $__currentLoopData = $salas; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $sala): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <option value="<?php echo e($sala->id); ?>" <?php if(request('sala_id') == $sala->id): ?> selected <?php endif; ?>><?php echo e($sala->nome); ?></option>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                            </select>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Filtrar</button>
+                    </form>
+
                     <!-- Conteúdo da visualização -->
                     <table class="min-w-full">
                         <thead>
@@ -43,6 +63,10 @@
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </tbody>
                     </table>
+
+                    <!-- Links de paginação -->
+                    <?php echo e($reservas->links()); ?>
+
                 </div>
             </div>
         </div>

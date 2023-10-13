@@ -9,6 +9,26 @@
         <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6">
+                    <!-- Campos de filtro -->
+                    <form action="{{ route('reservas.index') }}" method="GET">
+                        <div class="mb-4">
+                            <label for="data_reserva">Data da Reserva:</label>
+                            <input type="date" name="data_reserva" id="data_reserva" value="{{ request('data_reserva') }}">
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="sala_id">Sala de Reunião:</label>
+                            <select name="sala_id" id="sala_id">
+                                <option value="">Todas as Salas</option>
+                                @foreach($salas as $sala)
+                                    <option value="{{ $sala->id }}" @if(request('sala_id') == $sala->id) selected @endif>{{ $sala->nome }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Filtrar</button>
+                    </form>
+
                     <!-- Conteúdo da visualização -->
                     <table class="min-w-full">
                         <thead>
@@ -34,6 +54,9 @@
                             @endforeach
                         </tbody>
                     </table>
+
+                    <!-- Links de paginação -->
+                    {{ $reservas->links() }}
                 </div>
             </div>
         </div>

@@ -9,14 +9,35 @@ use Illuminate\Support\Facades\DB;
 
 class FatoReservaController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        // Use o método all() para carregar todas as reservas
-        $reservas = FatoReserva::all();
+        // Carregue todas as salas disponíveis
+        $salas = DSala::all();
 
-        // Passe as reservas para a view 'reservas.index'
-        return view('reservas.index', compact('reservas'));
+        $query = FatoReserva::query();
+
+        // Verifique se um filtro de data foi fornecido
+        if ($request->has('data_reserva')) {
+            $query->where('data_reserva', $request->input('data_reserva'));
+
+            // Verifique se um filtro de sala foi fornecido
+            if ($request->has('sala_id')) {
+                $salaId = $request->input('sala_id');
+                if (!empty($salaId)) {
+                    $query->where('sala_id', $salaId);
+                }
+            }
+        }
+
+        // Execute a consulta e obtenha os resultados paginados
+        $reservas = $query->paginate(10);
+
+        return view('reservas.index', compact('reservas', 'salas'));
     }
+
+
+
+
 
     public function create()
     {
@@ -27,7 +48,7 @@ class FatoReservaController extends Controller
         return view('reservas.create', compact('salas'));
     }
 
-    
+
     public function store(Request $request)
     {
         $request->validate([
@@ -36,7 +57,7 @@ class FatoReservaController extends Controller
             'hora_inicio' => 'required|date_format:H:i',
             'hora_fim' => 'required|date_format:H:i|after:hora_inicio',
         ]);
-    
+
         // Obtenha todos os horários entre a hora de início e a hora de fim
         $horarios = [];
         $horaAtual = $request->input('hora_inicio');
@@ -44,10 +65,10 @@ class FatoReservaController extends Controller
             $horarios[] = $horaAtual;
             $horaAtual = date('H:i', strtotime($horaAtual . ' + 1 minute'));
         }
-    
+
         try {
             DB::beginTransaction();
-    
+
             // Verifique a disponibilidade da sala para cada intervalo de tempo
             foreach ($horarios as $horario) {
                 $conflito = FatoReserva::where('sala_id', $request->input('sala_id'))
@@ -55,13 +76,13 @@ class FatoReservaController extends Controller
                     ->where('hora_inicio', '<=', $horario)
                     ->where('hora_fim', '>', $horario)
                     ->first();
-    
+
                 if ($conflito) {
                     DB::rollBack();
                     return redirect()->back()->with('error', 'Sala já reservada para este horário.');
                 }
             }
-    
+
             // Se não houver conflitos, crie a reserva
             $reserva = FatoReserva::create([
                 'sala_id' => $request->input('sala_id'),
@@ -70,16 +91,16 @@ class FatoReservaController extends Controller
                 'hora_fim' => $request->input('hora_fim'),
                 'user_id' => auth()->user()->id,
             ]);
-    
+
             DB::commit();
-    
+
             return redirect()->route('reservas.index')->with('success', 'Reserva Realizada!');
         } catch (\Exception $e) {
             DB::rollBack();
             return redirect()->back()->with('error', 'Erro ao criar reserva. Por favor, tente novamente.');
         }
     }
-    
+
 
 
     public function edit(FatoReserva $reserva)

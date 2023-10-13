@@ -10,6 +10,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SetorController;
 use App\Http\Controllers\DSalaController;
 use App\Http\Controllers\FatoReservaController;
+use App\Http\Controllers\DocumentoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -199,6 +200,29 @@ Route::middleware([
 
     Route::get('/app/reservas.json', [FatoReservaController::class, 'getReservedDatesAndTimes'])
     ->name('reservas.dates-and-times-reserved');
+
+    // Rota para exibir o formulário de upload
+Route::get('/documentos/upload', [DocumentoController::class, 'showUploadForm'])->name('upload.form');
+
+// Rota para processar o upload de documentos
+Route::post('/documentos/upload', [DocumentoController::class, 'upload'])->name('documentos.upload');
+
+// Rota para a página de pesquisa de documentos
+Route::get('/documentos', [DocumentoController::class, 'search'])->name('documentos.index');
+
+// Rota para exibir a página de categorização de documentos
+Route::get('/documentos/categorias', [DocumentoController::class, 'showCategories'])->name('documentos.categories');
+
+Route::get('/documentos/{id}', [DocumentoController::class, 'show'])->name('documentos.show');
+
+Route::get('/iframe-pdf/{pdf}', [DocumentoController::class, 'visualizar'])->name('documentos.iframe');
+
+// Rota para associar tags aos documentos
+Route::post('/documentos/categorias', [DocumentoController::class, 'categorize'])->name('documentos.categorize');
+
+// Rota para exportar um documento em um formato específico
+Route::get('/documentos/export/{id}/{format}', [DocumentoController::class, 'export'])->name('documentos.export');
+
     
 
 });
