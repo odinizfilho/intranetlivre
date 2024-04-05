@@ -12,7 +12,7 @@
         @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
             <div x-data="{photoName: null, photoPreview: null}" class="col-span-6 sm:col-span-4">
                 <!-- Profile Photo File Input -->
-                <input type="file" class="hidden"
+                <input type="file" id="photo" class="hidden"
                             wire:model.live="photo"
                             x-ref="photo"
                             x-on:change="
@@ -38,7 +38,7 @@
                     </span>
                 </div>
 
-                <x-secondary-button class="mt-2 mr-2" type="button" x-on:click.prevent="$refs.photo.click()">
+                <x-secondary-button class="mt-2 me-2" type="button" x-on:click.prevent="$refs.photo.click()">
                     {{ __('Select A New Photo') }}
                 </x-secondary-button>
 
@@ -58,15 +58,6 @@
             <x-input id="name" type="text" class="mt-1 block w-full" wire:model="state.name" required autocomplete="name" />
             <x-input-error for="name" class="mt-2" />
         </div>
-
-        <!-- CPF -->
-<div class="col-span-6 sm:col-span-4">
-    <x-label for="matricula" value="{{ __('Matricula') }}" />
-    <x-input x-mask="9999" id="matricula" type="text" class="mt-1 block w-full" maxlength="14" wire:model="state.matricula" autocomplete="matricula" />
-    <x-input-error for="matricula" class="mt-2" />
-</div>
-
-
 
         <!-- Email -->
         <div class="col-span-6 sm:col-span-4">
@@ -93,7 +84,7 @@
     </x-slot>
 
     <x-slot name="actions">
-        <x-action-message class="mr-3" on="saved">
+        <x-action-message class="me-3" on="saved">
             {{ __('Saved.') }}
         </x-action-message>
 

@@ -5,44 +5,30 @@ import typography from '@tailwindcss/typography';
 /** @type {import('tailwindcss').Config} */
 export default {
     content: [
-        './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
-        './vendor/laravel/jetstream/**/*.blade.php',
-        './storage/framework/views/*.php',
-        './resources/views/**/*.blade.php',
-        'node_modules/daisyui/src/*.js',
+		'./vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
+		 './vendor/laravel/jetstream/**/*.blade.php',
+		 './storage/framework/views/*.php',
+		 './resources/views/**/*.blade.php',
+		 './app/Http/Livewire/**/*Table.php',
+		 './vendor/power-components/livewire-powergrid/resources/views/**/*.php',
+		 './vendor/power-components/livewire-powergrid/src/Themes/Tailwind.php',
+		 "./vendor/robsontenorio/mary/src/View/Components/**/*.php"
+	],
+    presets: [
+        require("./vendor/power-components/livewire-powergrid/tailwind.config.js"),
     ],
 
-    daisyui: {
-        themes: [
-          {
-            mytheme: {
-            
-   "primary": "#FFA800",
-            
-   "secondary": "#1F9A58",
-            
-   "accent": "#1dcdbc",
-            
-   "neutral": "#2b3440",
-            
-   "base-100": "#ffffff",
-            
-   "info": "#3abff8",
-            
-   "success": "#36d399",
-            
-   "warning": "#fbbd23",
-            
-   "error": "#f87272",
+    theme: {
+        extend: {
+            fontFamily: {
+                sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
-          },
-        ],
-      },
+        },
+    },
 
-
-    plugins: [forms, typography, require("daisyui")],
-
-    daisyui: {
-        themes: ["light", "dark", "cupcake"],
-      },
+    plugins: [
+		forms,
+		typography,
+		require("daisyui")
+	],
 };

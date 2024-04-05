@@ -13,14 +13,12 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
     /**
      * Validate and update the given user's profile information.
      *
-     * @param  array<string, string>  $input
+     * @param  array<string, mixed>  $input
      */
     public function update(User $user, array $input): void
     {
-        //$input['cpf'] = preg_replace('/[^0-9]/', '', $input['cpf']);
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
-            'matricula' => ['nullable', 'string', 'max:255'],
             'email' => ['required', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
             'photo' => ['nullable', 'mimes:jpg,jpeg,png', 'max:1024'],
         ])->validateWithBag('updateProfileInformation');
@@ -36,7 +34,6 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
             $user->forceFill([
                 'name' => $input['name'],
                 'email' => $input['email'],
-                'matricula' => $input['matricula'],
             ])->save();
         }
     }
@@ -51,7 +48,6 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
         $user->forceFill([
             'name' => $input['name'],
             'email' => $input['email'],
-            'matricula' => $input['matricula'],
             'email_verified_at' => null,
         ])->save();
 
