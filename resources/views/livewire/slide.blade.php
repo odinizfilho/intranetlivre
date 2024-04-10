@@ -29,13 +29,9 @@
     <div class="w-full carousel">
         <template x-for="(slide, index) in slides" :key="index">
             <div class="block w-full carousel-item" x-show="index === currentIndex">
-                <img :src="slide.src" class="w-full rounded-md" />
-                <button class="absolute flex items-center transform -translate-x-1/2 btn btn-primary bottom-4 left-1/2"
-                    @click="goToLink(slide.link)">
-                    Veja mais <i class="ml-1 fas ">
-                        <LinkIcon className="h-6 w-6 text-blank-500" />
-                    </i>
-                </button>
+
+                <a href="#" @click="goToLink(slide.link)"><img :src="slide.src"
+                        class="w-full rounded-md" /></a>
             </div>
         </template>
     </div>

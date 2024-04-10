@@ -2,15 +2,14 @@
 
 namespace App\Http\Controllers;
 
-
-use Illuminate\Http\Request;
+use App\Models\Intranet\Admin\Category;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        return view('intranet.home');
-    }
+        $category = Category::all();
 
- 
+        return view('intranet.home', compact('category'));
+    }
 }

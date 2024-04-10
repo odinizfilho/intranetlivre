@@ -3,16 +3,20 @@
     <div class="px-6 py-8">
         <!--buscador-->
         <div class="flex items-center p-3 mb-4 bg-white border-none rounded-full shadow-md">
-            <input type="text" placeholder="Buscar..."
-                class="w-full px-4 py-2 bg-gray-100 rounded-full focus:outline-none">
-            <select
-                class="block px-4 py-2 pr-8 ml-3 leading-tight text-gray-700 bg-gray-100 border border-gray-300 rounded-full appearance-none focus:outline-none focus:bg-white focus:border-gray-500">
-                <option value="">Filtrar por...</option>
-                <option value="opcao1">Opção 1</option>
-                <option value="opcao2">Opção 2</option>
-                <option value="opcao3">Opção 3</option>
-            </select>
+            <form action="{{ route('docmanager.search') }}" method="GET" class="flex space-x-3 w-full">
+                <input type="text" name="search" placeholder="Pesquisar..."
+                    class="flex-1 px-4 py-2 bg-gray-100 rounded-full focus:outline-none">
+                <select name="category"
+                    class="px-4 py-2 pr-8 leading-tight text-gray-700 bg-gray-100 border border-gray-300 rounded-full appearance-none focus:outline-none focus:bg-white focus:border-gray-500">
+                    <option value="" selected>Todas as categorias</option>
+                    @foreach ($category as $category)
+                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                    @endforeach
+                </select>
+            </form>
         </div>
+
+
 
 
 

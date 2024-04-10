@@ -70,7 +70,7 @@
                     <table style="box-sizing: border-box; border-collapse: collapse; max-width: 100%;">
                         <tbody style="box-sizing: border-box;">
                             <tr style="box-sizing: border-box;">
-                                <td style="margin: 0px; box-sizing: border-box;" width="154.5"><img style="box-sizing: border-box; vertical-align: middle; float: left;" src="https://www.sicredi.com.br/media/coop/filer_public/2022/06/28/horizontal_preferencial_colorida_rgb.png" width="150" height="45" data-bit="iit"></td>
+                                <td style="margin: 0px; box-sizing: border-box;" width="154.5"><img style="box-sizing: border-box; vertical-align: middle; float: left;" src="{{ $intranetConfig->getFirstMediaUrl('logo') }}" width="150" height="45" data-bit="iit"></td>
                             </tr>
                         </tbody>
                     </table>
