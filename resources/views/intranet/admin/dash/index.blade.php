@@ -51,7 +51,7 @@
 
                 <small class="text-xs font-medium text-center"> Slide </small>
             </a>
-            <a href="#settings"
+            <a href="/admin/config"
                 class="flex aspect-square min-h-[32px] w-16 flex-col items-center justify-center gap-1 rounded-md p-1.5 text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-slate-800">
                 <!-- HeroIcon - Cog-6-tooth -->
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"

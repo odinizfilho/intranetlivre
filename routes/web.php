@@ -5,6 +5,7 @@ use App\Http\Controllers\Intranet\Admin\AppsController;
 use App\Http\Controllers\Intranet\Admin\CategoryController;
 use App\Http\Controllers\Intranet\Admin\DashController;
 use App\Http\Controllers\Intranet\Admin\IntranetConfigController;
+use App\Http\Controllers\Intranet\BlogController;
 use App\Http\Controllers\Intranet\DocManagerController;
 use App\Http\Controllers\Intranet\ToolsController;
 use Illuminate\Support\Facades\Route;
@@ -42,9 +43,24 @@ Route::middleware([
     Route::get('/categories/{category}', [CategoryController::class, 'show'])->name('categories.show');
     Route::get('/categories/{category}/edit', [CategoryController::class, 'edit'])->name('categories.edit');
     Route::put('/categories/{category}', [CategoryController::class, 'update'])->name('categories.update');
-
     // Rota para excluir uma categoria
     Route::delete('/categories/{category}', [CategoryController::class, 'destroy'])->name('categories.destroy');
+
+    // Rota para exibir a lista de posts
+    Route::get('/posts', [BlogController::class, 'index'])->name('blog.index');
+    // Rota para exibir um post específico
+    Route::get('/posts/{post}', [BlogController::class, 'show'])->name('blog.show');
+    // Rota para exibir o formulário de criação de post
+    Route::get('/blog/create', [BlogController::class, 'create'])->name('blog.create');
+    // Rota para armazenar um novo post
+    Route::post('/posts', [BlogController::class, 'store'])->name('blog.store');
+    // Rota para exibir o formulário de edição de post
+    Route::get('/posts/{post}/edit', [BlogController::class, 'edit'])->name('blog.edit');
+    // Rota para atualizar um post existente
+    Route::put('/posts/{post}', [BlogController::class, 'update'])->name('blog.update');
+    // Rota para excluir um post
+    Route::delete('/posts/{post}', [BlogController::class, 'destroy'])->name('blog.destroy');
+
 });
 
 Route::group(['middleware' => ['auth', 'admin']], function () {
