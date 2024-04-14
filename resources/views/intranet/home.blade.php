@@ -71,7 +71,8 @@
                                                     </svg>
                                                 </span>
                                             </div>
-                                            <h3 class="mb-4 font-semibold  text-2xl"><a href=""
+                                            <h3 class="mb-4 font-semibold  text-2xl"><a
+                                                    href="{{ route('blog.show', $post->slug) }}"
                                                     class="transition-all text-blue-900 hover:text-blue-600">
                                                     {{ $post->title }}</a></h3>
                                             <p class="text-sky-800 text-sm mb-0">
@@ -80,8 +81,13 @@
                                             </p>
                                         </div>
                                         <div class="mt-auto">
-                                            <img src="https://picsum.photos/400/300" alt=""
-                                                class="w-full h-48 object-cover">
+                                            @if ($post->hasMedia('featured_image'))
+                                                <img src="{{ $post->getFirstMediaUrl('featured_image') }}"
+                                                    alt="" class="w-full h-48 object-cover">
+                                            @else
+                                                <img src="https://grassworksmanufacturing.com/wp-content/themes/i3-digital/images/no-image-available.png"
+                                                    alt="" class="w-full h-48 object-cover">
+                                            @endif
                                         </div>
                                     </div>
                                 @endforeach

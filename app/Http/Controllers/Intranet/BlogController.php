@@ -30,6 +30,7 @@ class BlogController extends Controller
         $request->validate([
             'title' => 'required|string|max:255',
             'content' => 'required|string',
+            'featured_image' => 'image|mimes:webp,jpeg,png,jpg,gif|max:2048', // Validação da imagem de destaque
         ]);
 
         $user = Auth::user();
@@ -39,6 +40,12 @@ class BlogController extends Controller
         $post->content = $request->content;
         $post->slug = Str::of($request->title)->slug();
         $post->user()->associate($user); // Associa o usuário ao post
+
+        // Upload da imagem de destaque
+        if ($request->hasFile('featured_image')) {
+            $post->addMedia($request->file('featured_image'))->toMediaCollection('featured_image');
+        }
+
         $post->save();
 
         return redirect()->route('blog.index')->with('success', 'Post criado com sucesso!');
@@ -62,11 +69,19 @@ class BlogController extends Controller
         $request->validate([
             'title' => 'required|string|max:255',
             'content' => 'required|string',
+            'featured_image' => 'image|mimes:webp,jpeg,png,jpg,gif|max:2048', // Validação da imagem de destaque
         ]);
 
         $post->title = $request->title;
         $post->content = $request->content;
         $post->slug = Str::of($request->title)->slug();
+
+        // Atualização da imagem de destaque, se fornecida
+        if ($request->hasFile('featured_image')) {
+            $post->clearMediaCollection('featured_image'); // Remove a mídia existente da coleção
+            $post->addMedia($request->file('featured_image'))->toMediaCollection('featured_image');
+        }
+
         $post->save();
 
         return redirect()->route('blog.index')->with('success', 'Post atualizado com sucesso!');
