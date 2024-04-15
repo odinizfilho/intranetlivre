@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Editor.js Exemplo com Todas as Funcionalidades e Tailwind CSS</title>
+  <!-- Inclua o arquivo CSS do Tailwind -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+
+  <div id="editorjs" class="max-w-3xl mx-auto mt-8"></div>
+  <!-- Adicione uma textarea para armazenar o conteúdo do Editor.js -->
+  <textarea id="content" name="content" style="display: none;"></textarea>
+
+  <!-- Inclua a biblioteca do Editor.js com todos os plugins padrão -->
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
+
+  <script>
+    // Crie uma instância do Editor.js
+    var editor = new EditorJS({
+      // Defina o elemento de destino como a div editorjs
+      holder: 'editorjs',
+      // Defina os plugins e configurações conforme necessário
+      tools: {
+        header: {
+          class: window['Header']
+        },
+        list: {
+          class: window['List']
+        },
+        checklist: {
+          class: window['Checklist']
+        },
+        quote: {
+          class: window['Quote']
+        },
+        code: {
+          class: window['CodeTool']
+        },
+        embed: {
+          class: window['Embed'],
+          config: {
+            services: {
+              youtube: true
+            }
+          }
+        },
+        image: {
+          class: window['ImageTool']
+        },
+        link: {
+          class: window['LinkTool']
+        },
+        delimiter: {
+          class: window['Delimiter']
+        },
+        inlineCode: {
+          class: window['InlineCode']
+        },
+        warning: {
+          class: window['Warning']
+        },
+        table: {
+          class: window['Table']
+        },
+        marker: {
+          class: window['Marker']
+        },
+        underline: {
+          class: window['Underline']
+        },
+        italic: {
+          class: window['Italic']
+        },
+        paragraph: {
+          class: window['Paragraph']
+        },
+        raw: {
+          class: window['RawTool']
+        },
+        nestedList: {
+          class: window['NestedList']
+        }
+      },
+      onChange: function () {
+        // Atualize o conteúdo da textarea sempre que houver uma alteração no Editor.js
+        editor.save().then((outputData) => {
+          document.getElementById('content').value = JSON.stringify(outputData);
+        }).catch((error) => {
+          console.log('Erro ao salvar conteúdo do Editor.js: ', error);
+        });
+      }
+    });
+  </script>
+
+</body>
+</html>

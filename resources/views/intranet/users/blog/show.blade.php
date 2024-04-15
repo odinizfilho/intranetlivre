@@ -19,7 +19,12 @@
                         alt="blog" class="mt-10 mb-11 rounded-md">
                 @endif
                 <div class="max-w-[770px] mx-auto">
-                    {!! nl2br(e($post->content)) !!}
+                    @foreach ($post->content['blocks'] as $block)
+                        @if ($block['type'] === 'paragraph')
+                            <p>{{ $block['data']['text'] }}</p>
+                        @endif
+                        <!-- Adicione mais condições para outros tipos de blocos, como cabeçalhos, listas, etc., conforme necessário -->
+                    @endforeach
                 </div>
             </div>
         </section>

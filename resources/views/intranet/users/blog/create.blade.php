@@ -12,20 +12,24 @@
                     <form action="{{ route('blog.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="mb-4">
-                            <label for="title" class="block text-gray-700 text-sm font-bold mb-2">Título:</label>
+                            <label for="title" class="block text-sm font-bold text-gray-700">Título:</label>
                             <input type="text" name="title" id="title"
-                                class="form-input rounded-md shadow-sm mt-1 block w-full" required>
+                                class="form-input mt-1 block w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                                required>
                         </div>
                         <div class="mb-4">
-                            <label for="content" class="block text-gray-700 text-sm font-bold mb-2">Conteúdo:</label>
-                            <textarea name="content" id="content" class="form-textarea rounded-md shadow-sm mt-1 block w-full" rows="6"
-                                required></textarea>
+                            <label for="content" class="block text-sm font-bold text-gray-700">Conteúdo:</label>
+                            <div id="editorjs">
+                                <textarea name="content" id="content" class="hidden"></textarea>
+                                <!-- Aqui será renderizado o editor do EditorJS -->
+                            </div>
                         </div>
                         <div class="mb-4">
-                            <label for="featured_image" class="block text-gray-700 text-sm font-bold mb-2">Imagem de
+                            <label for="featured_image" class="block text-sm font-bold text-gray-700">Imagem de
                                 Destaque:</label>
                             <input type="file" name="featured_image" id="featured_image"
-                                class="form-input rounded-md shadow-sm mt-1 block w-full" accept="image/*">
+                                class="form-input mt-1 block w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                                accept="image/*">
                         </div>
                         <button type="submit"
                             class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Salvar</button>
