@@ -7,4 +7,5 @@ return [
     App\Providers\JetstreamServiceProvider::class,
     App\Providers\VoltServiceProvider::class,
     App\Providers\IntranetConfigServiceProvider::class,
+    Usamamuneerchaudhary\Commentify\Providers\CommentifyServiceProvider::class,
 ];

@@ -1,28 +1,31 @@
 <x-app-layout>
-    <main>
-        <section class="pt-31.5 pb-17.5">
-            <div class="max-w-[1030px] mx-auto px-4 sm:px-8 xl:px-0">
-                <div class="max-w-[770px] mx-auto text-center">
-                    </br>
-                    <a href="category.html"
-                        class="inline-flex px-3 py-1 mb-1 text-sm font-medium bg-blue-100 rounded-full text-blue">Categoria
-                        do post</a>
-                    <h1 class="mb-5 text-2xl font-bold text-gray-800 sm:text-4xl lg:text-2xl">
-                        {{ $post->title }}
-                    </h1>
-                </div>
-                @if ($post->hasMedia('featured_image'))
-                    <img src="{{ $post->getFirstMediaUrl('featured_image') }}" alt="blog"
-                        class="mt-10 rounded-md mb-11">
-                @else
-                    <img src="https://grassworksmanufacturing.com/wp-content/themes/i3-digital/images/no-image-available.png"
-                        alt="blog" class="mt-10 rounded-md mb-11">
-                @endif
-                <div class="max-w-[770px] mx-auto">
-                    {!! $post->content !!}
-                </div>
-            </div>
-        </section>
-    </main>
+    <div class="relative max-w-screen-xl p-5 mx-auto sm:p-10 md:p-16">
+        <div class="overflow-hidden text-center bg-center bg-cover"
+            style="min-height: 500px; background-image: url('{{ $post->hasMedia('featured_image') ? $post->getFirstMediaUrl('featured_image') : 'https://api.time.com/wp-content/uploads/2020/07/never-trumpers-2020-election-01.jpg?quality=85&w=1201&h=676&crop=1' }}')"
+            title="{{ $post->title }}">
+        </div>
+        <div class="max-w-3xl mx-auto">
+            <div
+                class="flex flex-col justify-between mt-3 leading-normal bg-white rounded-b lg:rounded-b-none lg:rounded-r">
+                <div class="relative top-0 p-5 -mt-32 bg-white sm:p-10">
+                    <h1 href="#" class="mb-2 text-3xl font-bold text-gray-900">{{ $post->title }}</h1>
+                    <p class="mt-2 text-xs text-gray-700">Escrito por: Endomarketing
 
+
+                    </p>
+                    <br />
+
+                    {!! $post->content !!}
+
+
+
+
+
+
+                </div>
+                <livewire:comments :model="$post" />
+
+            </div>
+        </div>
+    </div>
 </x-app-layout>
