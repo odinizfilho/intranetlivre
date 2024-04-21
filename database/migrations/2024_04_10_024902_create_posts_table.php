@@ -21,7 +21,6 @@ class CreatePostsTable extends Migration
             $table->unsignedBigInteger('category_id')->nullable();
             $table->enum('status', ['published', 'draft', 'archived'])->default('draft');
             $table->string('slug')->unique();
-            $table->string('featured_image')->nullable();
             $table->timestamps();
 
             // Foreign keys

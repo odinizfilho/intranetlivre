@@ -7,6 +7,7 @@ use App\Http\Controllers\Intranet\Admin\DashController;
 use App\Http\Controllers\Intranet\Admin\IntranetConfigController;
 use App\Http\Controllers\Intranet\BlogController;
 use App\Http\Controllers\Intranet\DocManagerController;
+use App\Http\Controllers\Intranet\SliderController;
 use App\Http\Controllers\Intranet\ToolsController;
 use Illuminate\Support\Facades\Route;
 
@@ -60,6 +61,15 @@ Route::middleware([
     Route::put('/posts/{post}', [BlogController::class, 'update'])->name('blog.update');
     // Rota para excluir um post
     Route::delete('/posts/{post}', [BlogController::class, 'destroy'])->name('blog.destroy');
+
+    // slider
+    Route::get('/slider', [SliderController::class, 'index'])->name('slider.index');
+    Route::get('/slider/create', [SliderController::class, 'create'])->name('slider.create');
+    Route::post('/slider', [SliderController::class, 'store'])->name('slider.store');
+    Route::get('/slider/{sliderImage}', [SliderController::class, 'show'])->name('slider.show');
+    Route::get('/slider/{sliderImage}/edit', [SliderController::class, 'edit'])->name('slider.edit');
+    Route::put('/slider/{sliderImage}', [SliderController::class, 'update'])->name('slider.update');
+    Route::delete('/slider/{sliderImage}', [SliderController::class, 'destroy'])->name('slider.destroy');
 
 });
 

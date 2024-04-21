@@ -2,12 +2,15 @@
 
 namespace App\Livewire;
 
+use App\Models\Intranet\Slider;
 use Livewire\Component;
 
 class Slide extends Component
 {
     public function render()
     {
-        return view('livewire.slide');
+        $slider = Slider::all();
+
+        return view('livewire.slide', compact('slider'));
     }
 }

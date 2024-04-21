@@ -1,42 +1,72 @@
-<div x-data="{
-    slides: [
-        { src: 'https://daisyui.com/images/stock/photo-1625726411847-8cbb60cc71e6.jpg', link: 'https://www.example.com/page1' },
-        { src: 'https://daisyui.com/images/stock/photo-1609621838510-5ad474b7d25d.jpg', link: 'https://www.example.com/page2' },
-        { src: 'https://daisyui.com/images/stock/photo-1414694762283-acccc27bca85.jpg', link: 'https://www.example.com/page3' },
-        { src: 'https://daisyui.com/images/stock/photo-1665553365602-b2fb8e5d1707.jpg', link: 'https://www.example.com/page4' }
-    ],
-    currentIndex: 0,
-    interval: null,
-    nextSlide() {
-        this.currentIndex = (this.currentIndex + 1) % this.slides.length;
-    },
-    prevSlide() {
-        this.currentIndex = (this.currentIndex - 1 + this.slides.length) % this.slides.length;
-    },
-    startInterval() {
-        this.interval = setInterval(this.nextSlide, 5000); // Change slide every 5 seconds
-        this.nextSlide(); // Start with the next slide immediately
-    },
-    stopInterval() {
-        clearInterval(this.interval);
-        this.interval = null;
-    },
-    goToLink(link) {
-        window.location.href = link;
-    }
-}" x-init="startInterval()" @mouseenter="stopInterval()" @mouseleave="startInterval()"
-    class="relative">
-    <div class="w-full carousel">
-        <template x-for="(slide, index) in slides" :key="index">
-            <div class="block w-full carousel-item" x-show="index === currentIndex">
+<article x-data="slider" class="relative flex flex-shrink-0 w-full overflow-hidden shadow-2xl">
+    <div class="absolute z-10 px-2 text-sm text-center text-white bg-gray-600 rounded-full bottom-5 right-5">
+        <span x-text="currentIndex"></span>/
+        <span x-text="images.length"></span>
+    </div>
 
-                <a href="#" @click="goToLink(slide.link)"><img :src="slide.src"
-                        class="w-full rounded-md" /></a>
-            </div>
-        </template>
-    </div>
-    <div class="absolute inset-y-0 flex items-center justify-between w-full px-4 py-2">
-        <button @click.stop="prevSlide" class="btn btn-xs">&lt; Anterior</button>
-        <button @click.stop="nextSlide" class="btn btn-xs">Próximo &gt;</button>
-    </div>
-</div>
+    <template x-for="(item, index) in imageData">
+        <figure class="h-56" x-show="currentIndex == index + 1" x-transition:enter="transition transform duration-300"
+            x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+            x-transition:leave="transition transform duration-300" x-transition:leave-start="opacity-100"
+            x-transition:leave-end="opacity-0">
+            <img :src="item.src" :alt="item.title"
+                class="absolute inset-0 z-10 object-cover object-top w-full h-full opacity-70" />
+            <figcaption
+                class="absolute inset-x-0 z-20 p-4 mx-auto text-sm font-light leading-snug tracking-widest text-center bg-gray-300 bg-opacity-25 bottom-1 w-96">
+                <h4 x-text="item.title"></h4>
+                <p x-text="item.content"></p>
+                <a :href="item.link"
+                    class="px-2 py-1 space-x-2 text-blue-500 bg-gray-100 rounded shadow-md hover:underline ">Saiba
+                    Mais</a>
+            </figcaption>
+        </figure>
+    </template>
+
+    <button @click="back()"
+        class="absolute z-10 flex items-center justify-center -translate-y-1/2 bg-gray-100 rounded-full shadow-md left-14 top-1/2 w-11 h-11 hover:bg-gray-200">
+        <svg class="w-8 h-8 font-bold transition duration-500 ease-in-out transform motion-reduce:transform-none text-gray-500 hover:text-gray-600 hover:-translate-x-0.5"
+            fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7">
+            </path>
+        </svg>
+    </button>
+
+    <button @click="next()"
+        class="absolute z-10 flex items-center justify-center -translate-y-1/2 bg-gray-100 rounded-full shadow-md right-14 top-1/2 w-11 h-11 hover:bg-gray-200">
+        <svg class="w-8 h-8 font-bold transition duration-500 ease-in-out transform motion-reduce:transform-none text-gray-500 hover:text-gray-600 hover:translate-x-0.5"
+            fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path>
+        </svg>
+    </button>
+</article>
+
+<script>
+    document.addEventListener('alpine:init', () => {
+        Alpine.data('slider', () => ({
+            currentIndex: 1,
+            imageData: [
+                @foreach ($slider as $slide)
+                    {
+                        src: '{{ $slide->hasMedia('src_slider') ? $slide->getFirstMediaUrl('src_slider') : '#' }}',
+                        title: '{{ $slide->title }}',
+                        content: '{{ $slide->content }}',
+                        link: '{{ $slide->link }}'
+                    },
+                @endforeach
+
+            ],
+            back() {
+                if (this.currentIndex > 1) {
+                    this.currentIndex = this.currentIndex - 1;
+                }
+            },
+            next() {
+                if (this.currentIndex < this.imageData.length) {
+                    this.currentIndex = this.currentIndex + 1;
+                } else if (this.currentIndex <= this.imageData.length) {
+                    this.currentIndex = this.imageData.length - this.currentIndex + 1
+                }
+            },
+        }))
+    })
+</script>

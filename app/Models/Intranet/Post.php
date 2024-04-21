@@ -22,7 +22,7 @@ class Post extends Model implements HasMedia
     }
 
     protected $fillable = [
-        'title', 'content', 'slug', 'user_id', 'category_id', 'status', 'featured_image',
+        'title', 'content', 'slug', 'user_id', 'category_id', 'status',
     ];
 
     public function user()
