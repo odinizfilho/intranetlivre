@@ -19,7 +19,10 @@ Bem-vindo ao Intralivre, um projeto de intranet de código aberto desenvolvido e
 Tecnologias utilizadas no projeto:
 
 - PHP 8.2
-- Laravel 10.22
+- Laravel 11
+- Tailwind CSS 
+- Laravel Livewire
+- Laravel Jetstream
 
 ## 🛡️ Licença
 
