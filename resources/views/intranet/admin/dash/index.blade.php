@@ -23,7 +23,7 @@
                 <small class="text-xs font-medium text-center"> Apps </small>
             </a>
 
-            <a href="/admin/blog"
+            <a href="/blog/create"
                 class="flex aspect-square min-h-[32px] w-16 flex-col items-center justify-center gap-1 rounded-md p-1.5 text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-slate-800">
                 <!-- HeroIcon - Chart Bar -->
                 <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"

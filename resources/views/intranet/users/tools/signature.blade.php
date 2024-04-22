@@ -65,7 +65,7 @@
                 <div style="color: #000000; font-size: 12pt; white-space: normal; box-sizing: border-box; background-color: #ffffff; font-family: Tahoma; font-weight: bold;">${signatureData.nome}</div>
                 <div style="color: #000000; white-space: normal; box-sizing: border-box; background-color: #ffffff; font-size: 9pt; font-family: Arial;">${signatureData.cargo}</div>
                 <div style="color: #000000; white-space: normal; box-sizing: border-box; background-color: #ffffff; font-size: 9pt; font-family: Arial;">${signatureData.departamento}</div>
-                <div style="color: #000000; white-space: normal; box-sizing: border-box; background-color: #ffffff; font-size: 9pt; font-family: Arial;">Sicredi</div>
+                <div style="color: #000000; white-space: normal; box-sizing: border-box; background-color: #ffffff; font-size: 9pt; font-family: Arial;">{{ $intranetConfig->titulo }}</div>
                 <div style="color: #000000; white-space: normal; box-sizing: border-box; font-family: 'Arial Regular'; font-size: 14px; background-color: #ffffff;">
                     <table style="box-sizing: border-box; border-collapse: collapse; max-width: 100%;">
                         <tbody style="box-sizing: border-box;">
@@ -75,11 +75,11 @@
                         </tbody>
                     </table>
                 </div>
-                <div style="color: #000000; white-space: normal; box-sizing: border-box; background-color: #ffffff; font-size: 9pt; font-family: Arial;">Av. Brasil, 5169 - Zona 04</div>
-                <div style="color: #000000; white-space: normal; box-sizing: border-box; background-color: #ffffff; font-size: 9pt; font-family: Arial;">87014-070 | Maringá - PR</div>
+                <div style="color: #000000; white-space: normal; box-sizing: border-box; background-color: #ffffff; font-size: 9pt; font-family: Arial;">{{ $intranetConfig->endereco }}</div>
+                <div style="color: #000000; white-space: normal; box-sizing: border-box; background-color: #ffffff; font-size: 9pt; font-family: Arial;">{{ $intranetConfig->cep }} | Cidade - PR</div>
                 <div style="color: #000000; white-space: normal; box-sizing: border-box; background-color: #ffffff; font-size: 9pt; font-family: Arial; font-weight: bold;">T ${signatureData.telefone}</div>
                 <div style="color: #000000; white-space: normal; box-sizing: border-box; font-family: 'Arial Regular'; font-size: 14px; background-color: #ffffff;">
-                    <a style="color: #1155cc; box-sizing: border-box; background-position: 0px 0px; font-size: 9pt; font-family: Arial;" href="http://www.sicoobunicoob.com.br/" target="_blank" rel="noopener" data-saferedirecturl="https://www.google.com/url?q=http://www.sicoobunicoob.com.br/&amp;source=gmail&amp;ust=1712366565267000&amp;usg=AOvVaw3RVjUByv5n2BaMmWLOKWEZ"><strong style="box-sizing: border-box; font-weight: bold;">www.sicoobunicoob.<span class="il">com</span>.<span class="il">br</span></strong></a>
+                    <a style="color: #1155cc; box-sizing: border-box; background-position: 0px 0px; font-size: 9pt; font-family: Arial;" href="{{ $intranetConfig->link }}" target="_blank" rel="noopener" data-saferedirecturl="https://www.google.com/url?q={{ $intranetConfig->link }}/&amp;source=gmail&amp;ust=1712366565267000&amp;usg=AOvVaw3RVjUByv5n2BaMmWLOKWEZ"><strong style="box-sizing: border-box; font-weight: bold;">{{ parse_url($intranetConfig->link, PHP_URL_HOST) }}</span></strong></a>
                 </div>
             </div>`;
 
