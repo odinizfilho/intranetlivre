@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Intranet\Admin\AppsController;
+use App\Http\Controllers\Intranet\Admin\BranchController;
 use App\Http\Controllers\Intranet\Admin\CategoryController;
 use App\Http\Controllers\Intranet\Admin\DashController;
 use App\Http\Controllers\Intranet\Admin\IntranetConfigController;
@@ -70,6 +71,14 @@ Route::middleware([
     Route::get('/slider/{sliderImage}/edit', [SliderController::class, 'edit'])->name('slider.edit');
     Route::put('/slider/{sliderImage}', [SliderController::class, 'update'])->name('slider.update');
     Route::delete('/slider/{sliderImage}', [SliderController::class, 'destroy'])->name('slider.destroy');
+    //filial
+    Route::get('/branches', [BranchController::class, 'index'])->name('branches.index');
+    Route::get('/branches/create', [BranchController::class, 'create'])->name('branches.create');
+    Route::post('/branches', [BranchController::class, 'store'])->name('branches.store');
+    Route::get('/branches/{branch}', [BranchController::class, 'show'])->name('branches.show');
+    Route::get('/branches/{branch}/edit', [BranchController::class, 'edit'])->name('branches.edit');
+    Route::put('/branches/{branch}', [BranchController::class, 'update'])->name('branches.update');
+    Route::delete('/branches/{branch}', [BranchController::class, 'destroy'])->name('branches.destroy');
 
 });
 

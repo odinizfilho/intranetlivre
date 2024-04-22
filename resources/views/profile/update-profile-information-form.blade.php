@@ -91,6 +91,42 @@
                 @endif
             @endif
         </div>
+
+        <div class="col-span-6 sm:col-span-4">
+            <x-label for="admission" value="{{ __('Admission Date') }}" />
+            <x-input id="admission" type="date" class="mt-1 block w-full" wire:model="state.admission"
+                autocomplete="admission" />
+            <x-input-error for="admission" class="mt-2" />
+        </div>
+
+        <div class="col-span-6 sm:col-span-4">
+            <x-label for="birth_date" value="{{ __('Birth Date') }}" />
+            <x-input id="birth_date" type="date" class="mt-1 block w-full" wire:model="state.birth_date"
+                autocomplete="birth_date" />
+            <x-input-error for="birth_date" class="mt-2" />
+        </div>
+
+        <div class="col-span-6 sm:col-span-4">
+            <x-label for="ramal" value="{{ __('Ramal') }}" />
+            <x-input id="ramal" type="text" class="mt-1 block w-full" wire:model="state.ramal"
+                autocomplete="ramal" />
+            <x-input-error for="ramal" class="mt-2" />
+        </div>
+
+        <div class="col-span-6 sm:col-span-4">
+            <x-label for="branche_id" value="{{ __('Branch ID') }}" />
+            <x-input id="branche_id" type="number" class="mt-1 block w-full" wire:model="state.branche_id"
+                autocomplete="branche_id" />
+            <x-input-error for="branche_id" class="mt-2" />
+        </div>
+
+        <div class="col-span-6 sm:col-span-4">
+            <x-label for="position_id" value="{{ __('Position ID') }}" />
+            <x-input id="position_id" type="number" class="mt-1 block w-full" wire:model="state.position_id"
+                autocomplete="position_id" />
+            <x-input-error for="position_id" class="mt-2" />
+        </div>
+
     </x-slot>
 
     <x-slot name="actions">
