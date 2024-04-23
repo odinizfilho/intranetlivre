@@ -63,7 +63,7 @@ class DocManagerController extends Controller
             $document->save();
         }
 
-        return redirect()->route('docmanager.index');
+        return redirect()->route('docmanagers.index');
     }
 
     public function show($id)
